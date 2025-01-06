@@ -147,8 +147,9 @@ class TallyController extends Controller
             $managementFees = [
                 'LedgerName' => 'Ticket Processing Fees (Income)',
                 'Amount' => $fare_attributes['total_breakup']['admin_markup'],
-                'CostCenterName' => 'Ticket Processing Income',
+                'CostCenterName' => 'Travel Desk',
                 'CCAmount' => $fare_attributes['total_breakup']['admin_markup'],
+                'BillwiseDetails' => []
             ];
             $sales['LedgerDrCR'][] = $managementFees;
         }
@@ -158,6 +159,9 @@ class TallyController extends Controller
             $cgstFees = [
                 'LedgerName' => 'CGST',
                 'Amount' => $fare_attributes['total_breakup']['admin_markup_gst'] / 2,
+                'CostCenterName' => null,
+                'CCAmount' => 0.00,
+                'BillwiseDetails' => []
             ];
             $sales['LedgerDrCR'][] = $cgstFees;
         }
@@ -167,6 +171,9 @@ class TallyController extends Controller
             $sgstFees = [
                 'LedgerName' => 'SGST',
                 'Amount' => $fare_attributes['total_breakup']['admin_markup_gst'] / 2,
+                'CostCenterName' => null,
+                'CCAmount' => 0.00,
+                'BillwiseDetails' => []
             ];
             $sales['LedgerDrCR'][] = $sgstFees;
         }
