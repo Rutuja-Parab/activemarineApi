@@ -162,8 +162,8 @@ class TallyController extends Controller
 
                     // Prepare the ledger details for each PNR
                     $ledgerDetails[] = [
-                        'BillReferenceNumber' => $pnr,  // PNR as BillReferenceNumber
-                        'BillAmount' => $billAmount,  // BillAmount for each PNR
+                        'BillReferenceNumber' => $pnr,
+                        'BillAmount' => $billAmount,
                     ];
                 }
 
@@ -217,7 +217,7 @@ class TallyController extends Controller
                 // Add the current sales data to the allSales array
                 $allSales[] = $sales;
             }
-            if (!empty($allSales) && count($allSales) > 0) {
+            if (!empty($allSales) && count($allSales) > 0 && !empty($data)) {
                 TallySync::create([
                     'batch_no' => $batchNo + 1,
                     'sync_time' => now(), // Current timestamp
