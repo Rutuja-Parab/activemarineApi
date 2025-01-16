@@ -160,10 +160,11 @@ class TallyController extends Controller
                     // Calculate the BillAmount
                     $billAmount = $baseFare + $taxFare;
 
+
                     // Prepare the ledger details for each PNR
                     $ledgerDetails[] = [
                         'BillReferenceNumber' => $pnr,
-                        'BillAmount' => $billAmount ?? $totalFare,
+                        'BillAmount' => $billAmount == 0 ? $totalFare : $billAmount,
                     ];
                 }
 
