@@ -13,6 +13,6 @@ class TallyInvoice extends Model
         'status',
         'sync_time',
         'remarks',
-        'message'
+        'date'
     ];
 }
