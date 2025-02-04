@@ -88,8 +88,9 @@ class TallyController extends Controller
             'data.*.TransactionNumber' => 'required|string|max:255',
             'data.*.sync_status' => 'required|string|max:50',
             'data.*.Remarks' => 'nullable|string|max:500',
-            'data.*.Date' => 'string|max:500',
+            'data.*.Date' => 'nullable|regex:/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/',
         ]);
+
         DB::beginTransaction();
         try {
             foreach ($validatedData['data'] as $d) {
