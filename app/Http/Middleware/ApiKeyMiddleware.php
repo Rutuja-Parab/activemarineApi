@@ -15,19 +15,12 @@ class ApiKeyMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-        header("Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Authorization");
 
-        // If the request is an OPTIONS request, return 200 response immediately
-        if ($request->getMethod() == "OPTIONS") {
+        $apiKey = $request->header('X-API-KEY');
+        $configuredApiKey = env('API_KEY');
 
-            $apiKey = $request->header('X-API-KEY');
-            $configuredApiKey = env('API_KEY');
-
-            if ($apiKey !== $configuredApiKey) {
-                return response()->json(['message' => 'Unauthorized'], 401);
-            }
+        if ($apiKey !== $configuredApiKey) {
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
         return $next($request);
